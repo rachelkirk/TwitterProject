@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <title>Feed</title>
+    <th:block th:replace="fragments/header">
+</head>
+<body>
+    <div class="container">
+     <div th:replace="fragments/navbar"></div>
+     
+     <ul class="nav nav-tabs">
+    	<li role="presentation" th:classappend="${filter == 'all' ? 'active' : '' }">
+        	<a href="/tweets">All</a></li>
+    	<li role="presentation" th:classappend="${filter == 'following' ? 'active' : '' }">
+        	<a href="/tweets?filter=following">Following</a></li>
+	</ul><br/>
+     
+    <div th:if="${not #lists.isEmpty(tweetList)}">
+			<h3>Tweets</h3>
+		</div>
+<!-- 		replaced the block of code below with this fragment -->
+		<div th:replace="fragments/tweetList"></div>
+<!--         <div th:each="tweet:${tweetList}"> -->
+<!--             <h5>@<span th:text="${tweet.user.username}"></span> -->
+<!--             <small th:text="${tweet.date}"></small></h5> changed date formatting to update changes in tweet service -->
+<!--             <p th:utext="${tweet.message}"></p> -->
+<!--     	</div> -->
+    	<div th:if="${#lists.isEmpty(tweetList) and filter == 'all'}">
+    		<h3>No tweets have been created yet</h3>
+		</div>
+		<div th:if="${#lists.isEmpty(tweetList) and filter == 'following'}">
+   			 <h3>No tweets have been created by your followers</h3>
+		</div>
+    </div>
+   </body>
+   </html>

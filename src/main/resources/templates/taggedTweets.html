@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <title>Tagged Tweets</title>
+    <th:block th:replace="fragments/header">
+</head>
+<body>
+    <div class="container">
+     <div th:replace="fragments/navbar"></div>
+     <h2>Tweets containing #<span th:text="${tag}"></span></h2>
+     <!-- start section to create fragment -->
+<!-- 		<div class="list-group" th:each="tweet:${tweetList}"> -->
+<!--   			<div class="list-group-item list-group-item-action"> -->
+<!--     			<div class="d-flex w-100 justify-content-between"> -->
+<!--       				<a class="username" th:href="@{/users/} + ${tweet.user.username}">@<span th:text="${tweet.user.username}"> -->
+<!--       				</span></a><small th:text="${tweet.date}"></small> changed date format from tweet service -->
+<!--     			</div> -->
+<!--     			<p class="mb-1" th:utext="${tweet.message}"></p> -->
+<!--     		</div> -->
+<!-- 		</div> -->
+		<div th:replace="fragments/tweetList"></div>
+		<!-- end section to create fragment -->
+	    <div th:if="${#lists.isEmpty(tweetList)}">
+ 			<h3>No tweets contain this hashtag</h3>
+		</div>
+	</div>
+     
+     
+     
+     </div>
+     
+     
+     
+ </body>
+ </html>
